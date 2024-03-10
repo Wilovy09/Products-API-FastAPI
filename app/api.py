@@ -54,7 +54,7 @@ async def index():
             "bienvenida": "Bienvenido a la API de FastAPI"
         },
         {
-            "documentación": "Puedes ver la documentacion en /docs"
+            "documentación": "/docs"
         },
         {
             "código": "Puedes ver el código en https://github.com/Wilovy09/Products-API-FastAPI"
