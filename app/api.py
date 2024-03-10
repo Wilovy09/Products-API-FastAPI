@@ -57,7 +57,7 @@ async def index():
             "documentación": "/docs"
         },
         {
-            "código": "Puedes ver el código en https://github.com/Wilovy09/Products-API-FastAPI"
+            "código": "https://github.com/Wilovy09/Products-API-FastAPI"
         }
     ]
 """ ----------------------- Productos ----------------------- """
