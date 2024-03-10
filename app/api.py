@@ -49,7 +49,18 @@ empleados = [
 """ ----------------------- Index ----------------------- """
 @app.get("/", tags=["Root"])
 async def index():
-    return {"click here ->": "/docs"}
+    return [
+        {
+            "message": "Bienvenido a la API de FastAPI"
+        },
+        {
+            "message": "Puedes ver la documentacion en /docs"
+        },
+        {
+            "message": "Puedes ver el código en https://github.com/Wilovy09/Products-API-FastAPI"
+        }
+
+    ]
 """ ----------------------- Productos ----------------------- """
 @app.get("/products", 
         tags=["Products"], 
