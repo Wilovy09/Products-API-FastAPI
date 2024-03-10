@@ -51,7 +51,7 @@ empleados = [
 async def index():
     return [
         {
-            "bienvenida": "Bienvenido a la API de FastAPI"
+            "bienvenida": "Bienvenido a la API de Productos y Empleados by Wilovy09",
         },
         {
             "documentación": "/docs"
