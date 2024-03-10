@@ -51,15 +51,14 @@ empleados = [
 async def index():
     return [
         {
-            "message": "Bienvenido a la API de FastAPI"
+            "bienvenida": "Bienvenido a la API de FastAPI"
         },
         {
-            "message": "Puedes ver la documentacion en /docs"
+            "documentación": "Puedes ver la documentacion en /docs"
         },
         {
-            "message": "Puedes ver el código en https://github.com/Wilovy09/Products-API-FastAPI"
+            "código": "Puedes ver el código en https://github.com/Wilovy09/Products-API-FastAPI"
         }
-
     ]
 """ ----------------------- Productos ----------------------- """
 @app.get("/products", 
