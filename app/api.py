@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional, Text
@@ -26,7 +27,7 @@ products = [
 """ ----------------------- Index ----------------------- """
 @app.get("/", tags=["Root"])
 async def index():
-    return [
+    """ return [
         {
             "bienvenida": "Bienvenido a la API de Productos y Empleados by Wilovy09",
         },
@@ -36,7 +37,8 @@ async def index():
         {
             "código": "https://github.com/Wilovy09/Products-API-FastAPI"
         }
-    ]
+    ] """
+    return RedirectResponse("/docs")
 """ ----------------------- Productos ----------------------- """
 @app.get("/products", 
         tags=["Products"], 
