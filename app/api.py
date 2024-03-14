@@ -6,13 +6,7 @@ from typing import Optional, Text
 app = FastAPI()
 origins = ["*"]
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+app.add_middleware(CORSMiddleware, allow_origins=origins, allow_credentials=True, allow_methods=["*"], allow_headers=["*"],)
 
 class Product(BaseModel):
     id: Optional[int]
@@ -26,26 +20,9 @@ products = [
         "name": "laptop",
         "price": 800,
         "description": "New mac pro",
-        "count": 3,
+        "count": 1,
     }
 ]
-
-class Empleado(BaseModel):
-    id: Optional[int]
-    name: str
-    age: int
-    position: str
-    salary: int
-empleados = [
-    {
-        "id": 1,
-        "name": "Juan",
-        "age": 30,
-        "position": "Developer",
-        "salary": 1000,
-    }
-]
-
 """ ----------------------- Index ----------------------- """
 @app.get("/", tags=["Root"])
 async def index():
@@ -127,7 +104,3 @@ async def update_product(id: int, updaredProduct: Product):
             products[index]["id"] = id
             return products[index]
     raise HTTPException(status_code=404, detail="No se encontro el producto")
-""" ----------------------- Empleados ----------------------- """
-@app.get("/empleados", tags=["Empleados"], summary="Obten todos los empleados existentes", description="Obten empleados")
-async def get_empleados():
-    return empleados
