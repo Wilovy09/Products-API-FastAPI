@@ -1,13 +1,22 @@
-from fastapi import FastAPI, HTTPException
-from fastapi.responses import RedirectResponse
+from fastapi import FastAPI, Request,HTTPException
+from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional, Text
 
 app = FastAPI()
+app.mount("/static", StaticFiles(directory="./static/"), name="static")
+templates = Jinja2Templates(directory="./templates/")
+debug = True
 origins = ["*"]
 
-app.add_middleware(CORSMiddleware, allow_origins=origins, allow_credentials=True, allow_methods=["*"], allow_headers=["*"],)
+if debug == True:
+    methods = ["*"]
+    app.add_middleware(CORSMiddleware, allow_origins=origins, allow_credentials=True, allow_methods=methods, allow_headers=["*"],)
+else:
+    methods = ["GET"]
+    app.add_middleware(CORSMiddleware, allow_origins=origins, allow_credentials=True, allow_methods=methods, allow_headers=["*"],)
 
 class Product(BaseModel):
     id: Optional[int]
@@ -25,20 +34,9 @@ products = [
     }
 ]
 """ ----------------------- Index ----------------------- """
-@app.get("/", tags=["Root"])
-async def index():
-    """ return [
-        {
-            "bienvenida": "Bienvenido a la API de Productos y Empleados by Wilovy09",
-        },
-        {
-            "documentación": "/docs"
-        },
-        {
-            "código": "https://github.com/Wilovy09/Products-API-FastAPI"
-        }
-    ] """
-    return RedirectResponse("/docs")
+@app.get("/")
+async def index(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
 """ ----------------------- Productos ----------------------- """
 @app.get("/products", 
         tags=["Products"], 
