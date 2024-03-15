@@ -10,7 +10,9 @@ module.exports = {
           "btns": "#662549",
           "accent": "#ff725e",
           "texto": "#F39F5A",
-          "destacado": "#E8BCB9"
+          "destacado": "#E8BCB9",
+          "fondo-card": "#131126",
+          "fondo-card-code": "#181530"
         }
       }
     },

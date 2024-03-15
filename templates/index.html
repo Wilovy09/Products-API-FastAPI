@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products API</title>
     <link rel="stylesheet" href="{{url_for('static', path='/css/app.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', path='/css/styles.css')}}">
 </head>
 <body class="bg-custom-bg text-custom-destacado">
     <section class="flex justify-center">
@@ -3232,7 +3233,7 @@
                         <div class="rounded-lg p-4 max-w-[400px]">
                             <div class="px-1 py-4">
                                 <div class="text-2xl text-custom-destacado font-bold">Práctica de codificación</div>
-                                <p class="text-base mt-4">
+                                <p class="text-xl mt-4">
                                     Sumérgete en el código y familiarízate con la estructura de una API desarrollada en FastAPI. Explora cómo se definen rutas, modelos de datos y operaciones CRUD para gestionar productos.
                                 </p>
                             </div>
@@ -3240,7 +3241,7 @@
                         <div class="rounded-lg p-4 max-w-[400px]">
                             <div class="px-1 py-4">
                                 <div class="text-2xl text-custom-destacado font-bold">Experimentación segura</div>
-                                <p class="text-base mt-4">
+                                <p class="text-xl mt-4">
                                     Utiliza este proyecto como un entorno seguro para probar nuevas ideas y técnicas de desarrollo sin preocuparte por afectar una aplicación en producción.
                                 </p>
                             </div>
@@ -3248,7 +3249,7 @@
                         <div class="rounded-lg p-4 max-w-[400px]">
                             <div class="px-1 py-4">
                                 <div class="text-2xl text-custom-destacado font-bold">Aprendizaje interactivo</div>
-                                <p class="text-base mt-4">
+                                <p class="text-xl mt-4">
                                     Desarrolla tus habilidades de desarrollo de APIs a través de la práctica y la experimentación. Aprende cómo implementar características clave para una tienda en línea, como la creación, lectura, actualización y eliminación de productos.
                                 </p>
                             </div>
@@ -3256,7 +3257,7 @@
                         <div class="rounded-lg p-4 max-w-[400px]">
                             <div class="px-1 py-4">
                                 <div class="text-2xl text-custom-destacado font-bold">Desarrollo ágil</div>
-                                <p class="text-base mt-4">
+                                <p class="text-xl mt-4">
                                     Experimenta con la integración de nuevas funcionalidades o mejoras en la API y observa cómo afectan el rendimiento y la usabilidad del sistema.
                                 </p>
                             </div>
@@ -3268,17 +3269,186 @@
             <section id="producto" class="mt-8 grid grid-cols-1 items-center">
                 <h2 class="text-3xl text-custom-accent text-center">Producto</h2>
                 <h3 class="text-center"><a href="/docs" target="_blanck">/docs</a></h3>
+
+                <section class="flex justify-center">
+                    <section class="grid grid-cols-1 mx-8 md:mx-16">
+                        <div class="bg-custom-fondo-card text-white p-4 rounded-2xl my-8">
+                            <h4 class="text-3xl mb-4">/products</h4>
+                            <h5 class="bg-blue-500 p-1 rounded-xl inline text-center">GET</h5>
+                            <p class="mt-4">Este endpoint sirve para obtener todos los productos disponibles.</p>
+                            <span class="mb-4">Si el producto existe, Status = 200</span>
+                            <pre class="p-1 bg-custom-fondo-card-code rounded-2xl">
+                                <code>
+[
+    {
+        "id": 1,
+        "name": "laptop",
+        "price": 800,
+        "description": "New mac pro",
+        "count": 1
+    },
+    {
+        "id": 2,
+        "name": "Monitor",
+        "price": 1000,
+        "description": "New 144hz",
+        "count": 2
+    }
+]
+                                </code>
+                            </pre>
+                        </div>
+    
+                        <div class="bg-custom-fondo-card text-white p-4 rounded-2xl my-8">
+                            <h4 class="text-3xl mb-4">/products</h4>
+                            <h5 class="bg-green-500 p-1 rounded-xl inline text-center">POST</h5>
+                            <p class="mt-4">Este endpoint sirve para agregar productos a la lista, esta petición nos pedira un Request body.</p>
+                            <p class="mb-4">Request body:</p>
+                            <pre class="my-4 p-1 bg-custom-fondo-card-code rounded-2xl">
+                                <code>
+{
+    "id": INT,
+    "name": "STRING",
+    "price": INT,
+    "description": "STRING",
+    "count": INT
+}
+                                </code>
+                            </pre>
+                            <span>Si el producto se agrego correctamente, Status = 200</span>
+                            <pre class="mt-4 p-1 bg-custom-fondo-card-code rounded-2xl">
+                                <code>
+<span class="comentario">// Devuelve el producto agregado</span>
+{
+    "id": INT,
+    "name": "STRING",
+    "price": INT,
+    "description": "STRING",
+    "count": INT
+}
+                                </code>
+                            </pre>
+                        </div>
+                        
+                        <div class="bg-custom-fondo-card text-white p-4 rounded-2xl my-8">
+                            <h4 class="text-3xl mb-4">/products/{id}</h4>
+                            <h5 class="bg-blue-500 p-1 rounded-xl inline text-center">GET</h5>
+                            <p class="mt-4">Si queremos extraer solo un producto de nuestra lista de productos, usamos esta petición pasandole el parametro ID</p>
+                            <span>Si el producto existe, Status = 200</span>
+                            <pre class="my-4 p-1 bg-custom-fondo-card-code rounded-2xl">
+                                <code>
+{
+    "id": 1,
+    "name": "laptop",
+    "price": 800,
+    "description": "New mac pro",
+    "count": 1
+}
+                                </code>
+                            </pre>
+                            <span>Si el producto no existe, Status = 404</span>
+                            <pre class="my-4 p-1 bg-custom-fondo-card-code rounded-2xl">
+                                <code>
+{
+    "detail": "No se encontro el producto"
+}
+                                </code>
+                            </pre>
+                        </div>
+                        
+                        <div class="bg-custom-fondo-card text-white p-4 rounded-2xl my-8">
+                            <h4 class="text-3xl mb-4">/products/{id}</h4>
+                            <h5 class="bg-red-500 p-1 rounded-xl inline text-center">DELETE</h5>
+                            <p class="mt-4">Cuando queremos eliminar un producto haremos esta petición pasandole el ID del producto que queremos eliminar como parametro de ruta</p>
+                            <span>Si el producto existe, Status = 200</span>
+                            <pre class="my-4 p-1 bg-custom-fondo-card-code rounded-2xl">
+                                <code>
+{
+    "message": "El producto ha sido eliminado"
+}
+                                </code>
+                            </pre>
+                            <span>Si el producto no existe, Status = 404</span>
+                            <pre class="my-4 p-1 bg-custom-fondo-card-code rounded-2xl">
+                                <code>
+{
+    "detail": "No se encontro el producto"
+}
+                                </code>
+                            </pre>
+                        </div>
+    
+                        <div class="bg-custom-fondo-card text-white p-4 rounded-2xl my-8">
+                            <h4 class="text-3xl mb-4">/products/{id}</h4>
+                            <h5 class="bg-yellow-500 p-1 rounded-xl inline text-center">PUT</h5>
+                            <p class="mt-4">A veces queremos actualizar la descripción de un producto, usaremos este endpoint para editar el producto que deseamos.</p>
+                            <p class="mb-4">Para poder editar el producto necesitamos:</p>
+                            <ol class="p-1">
+                                <li>1. ID del produto y pasarlo como parametro de ruta</li>
+                                <li>2. Request body</li>
+                            </ol>
+    
+                            <p>Request body</p>
+                            <pre class="my-4 p-1 bg-custom-fondo-card-code rounded-2xl">
+                                <code>
+{
+    "id": 0,
+    "name": "string",
+    "price": 0,
+    "description": "string",
+    "count": 0
+}
+                                </code>
+                            </pre>
+                            <span>Si el producto existe, Status = 200</span>
+                            <pre class="my-4 p-1 bg-custom-fondo-card-code rounded-2xl">
+                                <code>
+<span class="comentario">// Devuelve el producto editado</span>
+{
+    "id": 2,
+    "name": "Monitor",
+    "price": 1000,
+    "description": "New 1144hz",
+    "count": 2
+}
+                                </code>
+                            </pre>
+                            <span>Si el producto no existe, Status = 404</span>
+                            <pre class="my-4 p-1 bg-custom-fondo-card-code rounded-2xl">
+                                <code>
+{
+    "detail": "No se encontro el producto"
+}
+                                </code>
+                            </pre>
+                            <span>Status = 422</span>
+                            <p>Esto significa que nos hemos equivocado en el Request body</p>
+                            <pre class="my-4 p-1 bg-custom-fondo-card-code rounded-2xl">
+                                <code>
+{
+    "detail": [
+        {
+        "type": "json_invalid",
+        "loc": [
+            "body",
+            110
+        ],
+        "msg": "JSON decode error",
+        "input": {},
+        "ctx": {
+            "error": "Expecting property name enclosed in double quotes"
+        }
+        }
+    ]
+}
+                                </code>
+                            </pre>
+                        </div>
+                    </section>
+                </section>
             </section>
             <!-- ----- -->
         </section>
     </section>
 </body>
 </html>
-<!-- 
-"bg"        : "#1D1A39",
-"headers"   : "#451952",
-"btns"      : "#662549",
-"accent"    : "#AE445A",
-"texto"     : "#F39F5A",
-"destacado" : "#E8BCB9"
--->
